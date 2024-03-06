@@ -19,4 +19,4 @@ so after playing with it by my own I decided to set it like this:
 
 `box-shadow: 0 10px 76px 0 rgba(0, 0, 0, 0.15);`
 
-2. 
+2. Same problem with tooltip shadow

@@ -1,6 +1,9 @@
 :root {
   --black: #212121;
   --white: #F9F9F9;
+  --green: #3B755F;
+  --blue: #2E3A8C;
+  --beige: #F2EBDB;
 
   font-family: 'Cabin Variable', sans-serif;
   line-height: 1.5;

@@ -3,10 +3,11 @@ import Widget from "./components/Widget.vue";
 
 import axios from "axios";
 import {onMounted, ref} from "vue";
+import {Product} from "./types/Product.ts";
 const response = ref()
 
 onMounted(async () => {
-	response.value = await axios.get<any>('https://api.mocki.io/v2/016d11e8/product-widgets')
+	response.value = await axios.get<Product[]>('https://api.mocki.io/v2/016d11e8/product-widgets')
 })
 </script>
 
@@ -17,7 +18,7 @@ onMounted(async () => {
 			<hr />
 			<div class="widget-container" v-if="response?.data">
 				<template v-for="widgetData in response.data">
-					<Widget :data="widgetData"/>
+					<Widget :product="widgetData"/>
 				</template>
 			</div>
 		</div>
