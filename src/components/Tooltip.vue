@@ -26,8 +26,8 @@
 
 .tooltip .tooltip__text {
 	visibility: hidden;
-	width: 248px;
-	height: 162px;
+	width: 208px;
+	height: 142px;
 	background-color: #fff;
 	text-align: center;
 	border-radius: 4px;
@@ -38,9 +38,9 @@
 	font-weight: 400;
 	line-height: 17.01px;
 	color: var(--black);
+	padding: 20px 20px 0 20px;
 
 	span {
-		padding: 24px 16px;
 		position: relative;
 	}
 
@@ -56,6 +56,6 @@
 	width: 248px;
 	bottom: 100%;
 	left: 0;
-	margin-left: -120px;
+	margin-left: -140px;
 }
 </style>
