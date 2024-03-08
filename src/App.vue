@@ -27,7 +27,6 @@ onMounted(async () => {
 
 <style scoped>
 .main {
-	//width: 851px;
 	width: 331px;
 	height: 697px;
 	border-radius: 8px;
@@ -45,15 +44,12 @@ hr {
 	max-width: 779px;
 }
 .widget-container {
-	//display: grid;
-	//grid-template-columns: repeat(3, 1fr);
-	//grid-template-rows: 1fr;
-	//gap: 10px;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 	@media (min-width: 800px) {
 		flex-direction: row;
 	}
-
 }
 </style>
