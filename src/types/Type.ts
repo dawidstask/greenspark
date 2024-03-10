@@ -1,5 +1,5 @@
 export enum Type {
 	CARBON = 'carbon',
-	PLASTIC_BOTTLES = 'palstic bottles',
+	PLASTIC_BOTTLES = 'plastic bottles',
 	TREES = 'trees',
 }

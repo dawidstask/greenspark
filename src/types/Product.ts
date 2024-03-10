@@ -1,13 +1,12 @@
-import {Type} from "./Type.ts";
-import {Action} from "./Action.ts";
-import {SelectedColor} from "./SelectedColor.ts";
+import {ActionType} from "./ActionType.ts";
+import {SelectedColorType} from "./SelectedColorType.ts";
 
 export interface Product {
 	id: number
-	type: Type
+	type: 'carbon' | 'plastic bottles' | 'trees'
 	amount: number
-	action: Action
+	action: ActionType
 	active: boolean
 	linked: boolean
-	selectedColor: SelectedColor
+	selectedColor: SelectedColorType
 }
