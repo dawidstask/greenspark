@@ -30,7 +30,7 @@ store.getProductWidgets()
 	border-radius: 8px;
 	background-color: var(--white);
 	box-shadow: 0 10px 76px 0 rgba(0, 0, 0, 0.15);
-	@media (min-width: 800px) {
+	@media (min-width: 900px) {
 		width: 851px;
 		height: 419px;
 	}
@@ -46,7 +46,7 @@ hr {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	@media (min-width: 800px) {
+	@media (min-width: 900px) {
 		flex-direction: row;
 	}
 }

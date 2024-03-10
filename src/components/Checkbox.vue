@@ -1,10 +1,15 @@
 <script setup lang="ts">
-
+const props = defineProps<{
+	id: number
+	isChecked: boolean
+}>()
+const emit = defineEmits(['onLinkStatusChange'])
+const onChange = () => emit('onLinkStatusChange', props.id)
 </script>
 
 <template>
 	<label class="container">
-		<input type="checkbox">
+		<input type="checkbox" :checked="isChecked" @change="onChange">
 		<span class="checkmark"></span>
 	</label>
 </template>

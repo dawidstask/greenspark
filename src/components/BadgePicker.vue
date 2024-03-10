@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import {SelectedColor} from "../types/SelectedColor.ts";
 
-defineProps<{
+const props = defineProps<{
 	id: number
 	selectedColor: string
 }>()
-const emit = defineEmits(['onBadgeChange'])
+const emit = defineEmits(['onBadgeColorChange'])
 
-const onChange = (e) => emit('onBadgeChange', e.target.value)
+const onChange = (e) => emit('onBadgeColorChange', { id: props.id, color: e.target.value })
 const colors = [SelectedColor.BLUE, SelectedColor.GREEN, SelectedColor.BEIGE, SelectedColor.WHITE, SelectedColor.BLACK]
 </script>
 

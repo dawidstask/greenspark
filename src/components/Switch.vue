@@ -1,10 +1,16 @@
 <script setup lang="ts">
 
+const props = defineProps<{
+	id: number
+	isChecked: boolean
+}>()
+const emit = defineEmits(['onBadgeStateChange'])
+const onChange = () => emit('onBadgeStateChange', props.id)
 </script>
 
 <template>
 	<label class="switch">
-		<input type="checkbox">
+		<input type="checkbox" :checked="isChecked" @change="onChange">
 		<span class="slider round"></span>
 	</label>
 </template>

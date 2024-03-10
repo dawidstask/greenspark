@@ -6,24 +6,34 @@ import Checkbox from "./Checkbox.vue";
 import {SelectedColor} from "../types/SelectedColor.ts";
 import BadgePicker from "./BadgePicker.vue";
 import Switch from "./Switch.vue";
+import {useProductWidgetsStore} from "../store";
 
 const props = defineProps<{
 	product: Product
 }>()
-
+const store = useProductWidgetsStore()
 const getValue = () => {
 	return `${props.product.amount}${props.product.type === Type.CARBON ? 'kgs of' : ''} ${props.product.type}`
 }
-const updateSelectedColor = (e) => {
-// 	update selected color pinia
-	console.log(e)
+const getImgSrc = () => {
+	return props.product.selectedColor === SelectedColor.BEIGE || props.product.selectedColor === SelectedColor.WHITE
+			? '/logo_green.svg' : '/logo_white.svg'
+}
+const updateSelectedColor = ({ id, color }: { id: number, color: SelectedColor }) => {
+	store.setColor(id, color)
+}
+const updateLinkStatus = (id: number) => {
+	store.setLink(id)
+}
+const updateState = (id: number) => {
+	store.setActive(id)
 }
 </script>
 
 <template>
 	<div class="widget">
 		<div class="widget__header flex align-items-center" :class="`widget__header--${product.selectedColor}`">
-			<img :src="product.selectedColor === SelectedColor.BEIGE ? '/logo_green.svg' : '/logo_white.svg'" class="widget__logo" alt="logo" />
+			<img :src="getImgSrc()" class="widget__logo" alt="logo" />
 			<div class="flex flex-column">
 				<span class="widget__info">This product {{ product.action }}</span>
 				<span class="widget__value">{{ getValue() }}</span>
@@ -32,17 +42,21 @@ const updateSelectedColor = (e) => {
 		<div class="widget__content">
 			<div class="widget__row-container flex justify-content-between">
 				<span class="widget__row flex">Link to Public Profile <Tooltip class="align-content-start" /></span>
-				<Checkbox />
+				<Checkbox :id="product.id" :is-checked="product.linked" @on-link-status-change="updateLinkStatus" />
 			</div>
 			<div class="widget__row-container flex justify-content-between align-items-center">
 				<span class="widget__row">Badge colour</span>
 				<div class="flex">
-					<BadgePicker :id="product.id" :selected-color="product.selectedColor" @on-badge-change="updateSelectedColor" />
+					<BadgePicker
+						:id="product.id"
+						:selected-color="product.selectedColor"
+						@on-badge-color-change="updateSelectedColor"
+					/>
 				</div>
 			</div>
 			<div class="widget__row-container flex justify-content-between">
 				<span class="widget__row">Activate badge</span>
-				<Switch />
+				<Switch :id="product.id" :is-checked="product.active" @on-badge-state-change="updateState" />
 			</div>
 		</div>
 	</div>
@@ -85,6 +99,8 @@ const updateSelectedColor = (e) => {
 }
 .widget__header--white {
 	background-color: var(--white);
+	color: var(--green);
+	box-shadow: 0 10px 76px 0 rgba(0, 0, 0, 0.15);
 }
 .widget__header--black {
 	background-color: var(--black);
