@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import Widget from "./components/Widget.vue";
+import {useProductWidgetsStore} from "./store";
 
-import axios from "axios";
-import {onMounted, ref} from "vue";
-import {Product} from "./types/Product.ts";
-const response = ref()
-
-onMounted(async () => {
-	response.value = await axios.get<Product[]>('https://api.mocki.io/v2/016d11e8/product-widgets')
-})
+const store = useProductWidgetsStore()
+store.getProductWidgets()
 </script>
 
 <template>
@@ -16,10 +11,13 @@ onMounted(async () => {
 		<div class="box">
 			<h3>Per product widgets</h3>
 			<hr />
-			<div class="widget-container" v-if="response?.data">
-				<template v-for="widgetData in response.data">
+			<div class="widget-container" v-if="store.productWidgets?.length">
+				<template v-for="widgetData in store.productWidgets">
 					<Widget :product="widgetData"/>
 				</template>
+			</div>
+			<div v-else>
+				<p>loading widgets...</p>
 			</div>
 		</div>
   </div>
